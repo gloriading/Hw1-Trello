@@ -248,8 +248,67 @@ function removeCard(boardName, listName, cardIndex){
 // fromCardIndex, toCardIndex. This should move a card with index fromCardIndex
 // from the fromList to the toList. It should put it in the new list using the toCardIndex.
 
+function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
 
+  let result = true;
+  let temp1 = 0;
+  let temp2 = 0;
+  for(let key in hello){
+    if(key === boardName){
 
+        for(let innerKey in hello[key]){
+          if(innerKey === fromList){
+            temp1 += 1; // to check if fromList exists
+          }
+          if(innerKey === toList){
+            temp1 += 2; // to check if toList exists
+          }
+        }
+
+        if(temp1 === 0){
+          return `Error: both lists '${fromList}' and '${toList}' do NOT exist`; // direct return to end the function
+        }else if(temp1 === 2){
+          return `Error: list '${fromList}' does NOT exist`;
+        }else if(temp1 === 1){
+          return `Error: list '${toList}' does NOT exist`;
+        }else if(temp1 === 3){
+          if(fromCardIndex < 0 || fromCardIndex > hello[key][fromList].length){
+            temp2 +=1; // fromCardIndex does not exist
+          }
+          if(toCardIndex < 0 || toCardIndex > hello[key][toList].length){
+            temp2 +=2; // toCardIndex does not exist
+          }
+        }
+
+        if(temp2 === 0){ // both card id exist
+          let tempCard='';
+          for(let innerKey in hello[key]){
+            if(innerKey === fromList){
+              let innerArr = hello[key][innerKey];
+              result = `Card '${innerArr[fromCardIndex]}' was moved from list '${fromList}' to list '${toList}' `;
+              tempCard = innerArr[fromCardIndex]; // store the card value
+              innerArr.splice(fromCardIndex,1); // remove the card
+            }
+            if(innerKey === toList){
+              let innerArr = hello[key][innerKey];
+              innerArr.splice(toCardIndex,0,tempCard); // insert a new card
+            }
+          }
+
+        }else if(temp2 === 1){
+          return `card index: '${fromCardIndex}' does not exist`;
+        }else if(temp2 === 2){
+          return `Where do you want to move the card to?`;
+        }
+    }
+  }
+  if (result === true){
+      result = `Board '${boardName}' doesn't exist! `;
+    }
+  return result;
+
+}
+console.log(moveCard('Tester Board', 'To Do', 'Do what', 1, 3));
 
 
 
