@@ -125,7 +125,7 @@ function displayBoard(boardName){
     }
   return result;
 }
-// console.log(displayBoard("Tester Board"));
+console.log(displayBoard("Tester Board"));
 //============================================================================
 // [createList]
 // Write a function named createList that takes two arguments, boardName and listName.
@@ -155,6 +155,23 @@ function createList(boardName, listName){
   return result;
 }
 // console.log(createList('Tester Board', 'Doing'));
+
+// Method 2 ----------------------------------------------------------------
+function createList(boardName, listName){
+
+  if(!hello[boardName]){
+    return `Board '${boardName}' does not exist.`;
+  }
+  if(hello[boardName][listName]){
+    return `List '${listName}' already exists.`;
+  }
+  hello[boardName][listName] = [];
+  // if the above 2 situations don't exits, create a new list
+  return `New list '${listName}' was created`;
+
+}
+// console.log(createList('Dreadms', 'To Do'));
+
 //============================================================================
 // [createCard]
 // Build a function called createCard that takes three arguments:
@@ -186,6 +203,20 @@ function createCard(boardName, listName, cardName){
 }
 // console.log(createCard('Tester Board', 'Doing', 'assignments'));
 
+//Method 2 ------------------------------------------------------------
+function createCard(boardName, listName, cardName){
+  if(!hello[boardName]){
+    return `Board '${boardName}' does not exist.`;
+  }
+  if(!hello[boardName][listName]){
+    return `List '${listName}' does not exist.`;
+  }
+  hello[boardName][listName].push(cardName);
+  return `New card '${cardName}' was added to list '${listName}'`;
+
+}
+// console.log(createCard('Dreams', 'Wish List', 'get younger'));
+
 //============================================================================
 // [stretch] removeList: This should take a board name and a list name and
 // removes the list from the board.
@@ -213,10 +244,23 @@ function removeList(boardName, listName){
 // console.log(displayBoard('Tester Board'));
 // console.log(removeList('Tester Board', 'Doing'));
 // console.log(displayBoard('Tester Board'));
+
+//Method 2 -------------------------------------------------------------
+function removeList(boardName, listName){
+  if(!hello[boardName]){
+    return `Board '${boardName}' does not exist.`;
+  }
+  if(!hello[boardName][listName]){
+    return `List '${listName}' does not exist.`;
+  }
+  delete hello[boardName][listName];
+  return `List '${listName}' was removed from Board '${boardName}'`;
+}
+// console.log(removeList('Dreams', 'Wish List'));
+
 //============================================================================
 // [Stretch]removeCard: This should take a board name, a list name and a card
 // index and removes the card from the list of the provided board name.
-
 
 function removeCard(boardName, listName, cardIndex){
   let result = true;
@@ -242,6 +286,24 @@ function removeCard(boardName, listName, cardIndex){
 // console.log(displayBoard('Dreams'));
 // console.log(removeCard('Dreams', 'Wish List', 0));
 // console.log(displayBoard('Dreams'));
+
+// Method 2 ------------------------------------------------------------
+function removeCard(boardName, listName, cardIndex){
+
+  if(!hello[boardName]){
+    return `Board '${boardName}' does not exist.`;
+  }
+  if(!hello[boardName][listName]){
+    return `List '${listName}' does not exist.`;
+  }
+  if(cardIndex < -1 || cardIndex >= hello[boardName][listName].length){
+    return `Please re-enter card index.`;
+  }
+  let removed = hello[boardName][listName][cardIndex];
+  hello[boardName][listName].splice(cardIndex,1);
+  return `Card '${removed}' was deleted from List '${listName}'.`;
+}
+// console.log(removeCard('Tester Board', 'To Do', 1));
 //============================================================================
 // [Stretch]
 // moveCard: This should take five argument, boardName, fromList, toList,
@@ -308,11 +370,36 @@ function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
   return result;
 
 }
-console.log(moveCard('Tester Board', 'To Do', 'Do what', 1, 3));
+// console.log(moveCard('Tester Board', 'To Do', 'Do what', 1, 3));
 
+// Method 2 --------------------------------------------------------------
 
+function moveCard(boardName, fromList, toList, fromCardIndex, toCardIndex){
 
-//for later-----------------------------------------------
+  if(!hello[boardName]){
+    return `Board '${boardName}' does not exist.`;
+  }
+  if(!hello[boardName][fromList]){
+    return `List '${fromList}' does not exist.`;
+  }
+  if(!hello[boardName][toList]){
+    return `List '${toList}' does not exist.`;
+  }
+  if(fromCardIndex < -1 || fromCardIndex >= hello[boardName][fromList].length){
+    return `Please re-enter from card index.`;
+  }
+  if(toCardIndex < -1 || toCardIndex >= hello[boardName][toList].length){
+    return `Please re-enter to card index.`;
+  }
+  let removed = hello[boardName][fromList].splice(fromCardIndex,1); // removed is an array with one element, removed[0] gives the card content
+
+  hello[boardName][toList].splice(toCardIndex,0,removed[0]);
+  return `Card '${removed[0]}' was moved from '${fromList}' to '${toList}'`;
+}
+// console.log(moveCard('Tester Board', 'To Do', 'Done', 1, 0));
+
+// ==============================================================================
+//for later(User Input)-----------------------------------------------
 // user input - node
 // const readline = require ('readline');
 // const interface = readline.createInterface({
