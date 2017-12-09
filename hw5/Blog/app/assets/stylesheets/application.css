@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+html{
+  font-family: Arial;
+}
+
+*{
+  font-family: inherit;
+}
+body {
+  background-color: whitesmoke;
+}
+.post-list-item {
+  margin-bottom: 0.5rem;
+}
+.post-list-item > a {
+  text-decoration: none;
+  color: navy;
+}
