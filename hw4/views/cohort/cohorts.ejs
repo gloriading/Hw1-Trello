@@ -1,12 +1,13 @@
 <%- include('../partials/header') %>
 
 
+
 <div class="mt-3">
   <% for (let list of lists) { %>
     <div class="card">
       <div class="card-body">
         <h4 class="card-title"><span>
-        <img style="width:5%; border-radius:50%;" src="<%= list.logoUrl %>" />
+        <img class="rounded-circle" style="width:5%; " src="<%= list.logoUrl %>" />
         </span>  <%= list.cohortsName %> </h4>
         <p class="card-text"><%= list.members %></p>
         <a href="/cohort/<%= list.id %>" class="btn btn-primary">Show Cohort</a>
@@ -14,7 +15,6 @@
     </div>
   <% } %>
 </div>
-
 
 
 
