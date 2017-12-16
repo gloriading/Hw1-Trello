@@ -8,6 +8,8 @@
 <p><strong>Update At:</strong> <%= @post.updated_at.to_date.strftime('%a, %e %b %Y') %></p>
 
 <br>
-<%= button_to "EDIT", edit_post_path(@post), :method => "get" %>
-<%= button_to "DELETE", post_path(@post), :method => "delete",
-data: {confirm: 'Are you sure?'} %>
+<% if can?(:manage, @post) %>
+  <%= button_to "EDIT", edit_post_path(@post), :method => "get" %>
+  <%= button_to "DELETE", post_path(@post), :method => "delete",
+  data: {confirm: 'Are you sure?'} %>
+<% end %>
