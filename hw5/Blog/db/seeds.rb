@@ -9,7 +9,8 @@ super_user = User.create(
   first_name: 'Jon',
   last_name: 'Snow',
   email: 'js@gmail.com',
-  password: PASSWORD
+  password: PASSWORD,
+  is_admin: true
 )
 
 10.times.each do
