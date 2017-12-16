@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   # patch('/posts/:id', to: 'posts#update')
   #
   # delete('/posts/:id', to: 'posts#destroy')
-  resources :posts
+
+
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
 #----------------------------------------------------
   get('/', to: 'welcome#index', as: :home)
 #----------------------------------------------------

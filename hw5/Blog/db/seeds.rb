@@ -1,7 +1,7 @@
 PASSWORD = '123'
 
 # order matters
-
+Comment.destroy_all
 Post.destroy_all
 User.destroy_all
 # super_user is the user we can trust (for testing)
@@ -30,7 +30,7 @@ puts Cowsay.say("Create #{users.count} users", :tux)
 #-----------------------------------------------------add `user` after association
 100.times do
   Post.create(
-    title: Faker::RickAndMorty.quote,
+    title: Faker::Beer.name,
     body: Faker::HitchhikersGuideToTheGalaxy.quote,
     user: users.sample
   )
@@ -38,6 +38,20 @@ end
 
 posts = Post.all
 puts Cowsay.say("Create #{posts.count} posts", :ghostbusters)
+#-------------------------------------------------------------------------------
+posts.each do |post|
+  rand(0..5).times.each do
+    Comment.create(
+      body: Faker::VForVendetta.quote,
+      post: post
+    )
+  end
+end
+
+comments = Comment.all
+
+puts Cowsay.say("Create #{comments.count} comments", :moose)
+
 #-------------------------------------------------------------------------------
 # puts "Login as admin with #{super_user.email} and password of '#{PASSWORD}'!"
 puts "Login with #{super_user.email} and password of '#{PASSWORD}'!"

@@ -1,3 +1,4 @@
+<%# show a post  ---------------------------------------------------------%>
 <div class="card text-white bg-dark mb-3 mt-2" style="max-width: 80rem;">
   <div class="card-header text-right">By: <%= @post.user&.full_name || "[deleted]" %></div>
   <div class="card-body">
@@ -28,13 +29,35 @@
   <% end %>
 </div>
 
-<!--
-<p><strong>Created At:</strong> <%= @post.created_at.to_date.strftime('%a, %e %b %Y') %></p>
-<p><strong>Update At:</strong> <%= @post.updated_at.to_date.strftime('%a, %e %b %Y') %></p> -->
-<!--
-<br>
-<% if can?(:manage, @post) %>
-  <%= button_to "EDIT", edit_post_path(@post), :method => "get" %>
-  <%= button_to "DELETE", post_path(@post), :method => "delete",
-  data: {confirm: 'Are you sure?'} %>
-<% end %> -->
+
+
+<%# comments form ---------------------------------------------------------%>
+
+<%= form_for [@post, @comment] do |f| %>
+  <% if @comment.errors.present? %>
+    <p>
+      <%= @comment.errors.full_messages.join(', ') %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= f.text_area :body ,class: "form-control",
+      placeholder: "What do you think about this post? Write a comment:" %>
+  </div>
+
+  <%= f.submit "Submit" ,class: "btn btn-outline-dark btn-sm mt-2 mb-4"%>
+<% end %>
+
+<%# Lists of comments ------------------------------------------------------%>
+<div>
+    <% @comments.each do |comment| %>
+      <div class="answer-list-item">
+        <p><%= comment.body %></p>
+
+        <p>
+          <strong>Created At:</strong>
+          <%= time_ago_in_words(comment.created_at) %> ago
+        </p>
+      </div>
+    <% end %>
+</div>

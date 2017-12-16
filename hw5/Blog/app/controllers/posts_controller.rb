@@ -24,11 +24,12 @@ class PostsController < ApplicationController
   end
 
   def show
-
+    @comments = @post.comments # display all the comments under a post
+    @comment = Comment.new # display a form for writing comments
   end
 
   def edit
-    
+
   end
 
   def update
