@@ -1,15 +1,40 @@
-<h2><%= @post.title %> </h2>
-<p>By <%= @post.user&.full_name || "[deleted]" %></p>
-<p><%= @post.body %> </p>
+<div class="card text-white bg-dark mb-3 mt-2" style="max-width: 80rem;">
+  <div class="card-header text-right">By: <%= @post.user&.full_name || "[deleted]" %></div>
+  <div class="card-body">
+    <h4 class="card-title"><%= @post.title %></h4>
+    <p class="card-text"><%= @post.body %></p>
+    <small class="card-text text-secondary">
+      Created at: <%= time_ago_in_words(@post.created_at) %> ago
+    </small>
+    <small class="card-text text-secondary ml-3">
+      Update at: <%= time_ago_in_words(@post.updated_at) %> ago
+    </small>
+  </div>
 
-<hr>
+  <% if can?(:manage, @post) %>
+  <div class="card-body text-right">
+    <div class="btn-group" role="group">
+      <%= button_to "EDIT",
+        edit_post_path(@post),
+        :method => "get",
+        class: "btn btn-outline-light btn-sm" %>
+      <%= button_to "DELETE",
+      post_path(@post),
+      :method => "delete",
+      class: "btn btn-outline-light btn-sm",
+      data: {confirm: 'Are you sure?'} %>
+    </div>
+  </div>
+  <% end %>
+</div>
 
+<!--
 <p><strong>Created At:</strong> <%= @post.created_at.to_date.strftime('%a, %e %b %Y') %></p>
-<p><strong>Update At:</strong> <%= @post.updated_at.to_date.strftime('%a, %e %b %Y') %></p>
-
+<p><strong>Update At:</strong> <%= @post.updated_at.to_date.strftime('%a, %e %b %Y') %></p> -->
+<!--
 <br>
 <% if can?(:manage, @post) %>
   <%= button_to "EDIT", edit_post_path(@post), :method => "get" %>
   <%= button_to "DELETE", post_path(@post), :method => "delete",
   data: {confirm: 'Are you sure?'} %>
-<% end %>
+<% end %> -->

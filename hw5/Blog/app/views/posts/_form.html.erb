@@ -1,17 +1,19 @@
 
-<%= form_for @post do |form| %>
-  <% if @post.errors.present? %>
-    <p> <%= @post.errors.full_messages.join(', ') %> </p>
-  <% end %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<%= form_for @post do |form|%>
 
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
+    <% if @post.errors.present? %>
+      <p> <%= @post.errors.full_messages.join(', ') %> </p>
+    <% end %>
+    <div>
+      <%= form.label :title ,for: "title"%>
+      <%= form.text_field :title ,class: "form-control", id:"title"%>
+    </div>
 
-    <%= form.submit %>
+    <div>
+      <%= form.label :body, for: "body", class: "mt-2" %>
+      <%= form.text_area :body ,class: "form-control", id:"body"%>
+    </div>
+
+      <%= form.submit "Submit", class: "btn btn-outline-dark btn-sm mt-2" %>
+
 <% end %>
