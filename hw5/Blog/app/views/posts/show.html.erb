@@ -50,14 +50,33 @@
 
 <%# Lists of comments ------------------------------------------------------%>
 <div>
+  <h5>Comments:</h5>
     <% @comments.each do |comment| %>
-      <div class="answer-list-item">
-        <p><%= comment.body %></p>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text"><%= comment.body %></p>
+          <p class="card-text"><em><small>
+            by: <%= comment.user&.full_name || "[deleted]" %>
+          </small></em></p>
+          <small class="card-text text-secondary">
+            Created at: <%= time_ago_in_words(comment.created_at) %> ago
+          </small>
+        </div>
 
-        <p>
-          <strong>Created At:</strong>
-          <%= time_ago_in_words(comment.created_at) %> ago
-        </p>
+        <% if can?(:destroy, comment) %>
+
+        <div class="card-body text-right">
+            <%= link_to(
+                'Delete',
+                post_comment_path(@post, comment),
+                data: {confirm: 'Are you sure?'},
+                method: :delete,
+                class: "btn btn-danger btn-sm mb-1"
+              )
+              %>
+        </div>
+
+        <% end %>
       </div>
     <% end %>
 </div>

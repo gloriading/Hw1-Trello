@@ -43,7 +43,8 @@ posts.each do |post|
   rand(0..5).times.each do
     Comment.create(
       body: Faker::VForVendetta.quote,
-      post: post
+      post: post,
+      user: users.sample
     )
   end
 end

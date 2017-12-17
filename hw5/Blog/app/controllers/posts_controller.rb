@@ -24,7 +24,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments # display all the comments under a post
+    # display all the comments under a post
+    @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new # display a form for writing comments
   end
 

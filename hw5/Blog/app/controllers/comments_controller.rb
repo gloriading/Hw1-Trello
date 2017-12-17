@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController
-  # before_action :authenticate_user!#, :find_question
-  before_action :find_post
-  # before_action :find_answer#, :authorize_user!, only: [:destroy]
+  before_action :authenticate_user!, :find_post
+  before_action :find_comment, :authorize_user!, only: [:destroy]
 
 def create
   @comment = Comment.new(comment_params)
   @comment.post = @post
-  # @comment.user = current_user # in order to add name next to answers
+  @comment.user = current_user # in order to add name next to answers
   #------------------------------------------------------------------------
   if @comment.save
     redirect_to post_path(@post)
@@ -15,12 +14,12 @@ def create
     render 'posts/show'
   end
 end
-  #
-  # def destroy
-  #
-  #   @answer.destroy
-  #   redirect_to question_path(@question)
-  # end
+
+  def destroy
+
+    @comment.destroy
+    redirect_to post_path(@post)
+  end
 
 
 private
@@ -32,17 +31,17 @@ private
   def find_post
     @post = Post.find params[:post_id]
   end
+
+  def find_comment
+    @comment = Comment.find params[:id]
+  end
   #
-  # def find_answer # add this (from destroy)
-  #   @answer = Answer.find params[:id]
-  # end
-  #
-  # def authorize_user! # add find_answer, then add before_action on top
-  #   unless can?(:manage, @answer)
-  #     flash[:alert] = "Access Denied!"
-  #     redirect_to home_path
-  #   end
-  # end
+  def authorize_user!
+    unless can?(:manage, @comment)
+      flash[:alert] = "Access Denied!"
+      redirect_to home_path
+    end
+  end
 
 
 
