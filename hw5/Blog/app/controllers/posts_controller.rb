@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
-
+#---new post form ----------------------------------------------------------
   def new
     @post = Post.new
   end
@@ -18,17 +18,17 @@ class PostsController < ApplicationController
       render :new
     end
   end
-
+#---posts index---------------------------------------------------------------
   def index
     @posts = Post.all.order(created_at: :desc)
   end
-
+#---show a post and its comments---------------------------------------------
   def show
     # display all the comments under a post
     @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new # display a form for writing comments
   end
-
+#---edit a post--------------------------------------------------------------
   def edit
 
   end
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-
+#---delete a post -----------------------------------------------------------
   def destroy
 
     @post.destroy
@@ -49,6 +49,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+#----------------------------------------------------------------------------
   private
 
   def post_params

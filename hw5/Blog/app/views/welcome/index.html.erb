@@ -1,0 +1,15 @@
+
+  <div class="jumbotron jumbotron-fluid mt-3">
+    <div class="container">
+      <h1 class="display-3">Welcome to Life+</h1>
+      <p class="lead">This is a place to share your life with others.</p>
+    </div>
+  </div>
+
+  <h3 class="mt-2">The most recent 10 posts</h3>
+
+  <% Post.recent_ten.each do |post| %>
+  <ul class="list-group mb-1">
+    <%= link_to post.title, post_path(post), class: "list-group-item list-group-item-action list-group-item-info" %>
+  </ul>
+  <% end %>

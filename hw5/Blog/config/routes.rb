@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get('/', to: 'welcome#index', as: :home)
 #----------------------------------------------------
   resources :users, only: [:new, :create, :update, :edit]
+  # resources :users do
+  #   get :edit_password
+  #   update :update_password
+  # end
   get('/users/:id/edit_password', to: 'users#edit_password',as: :edit_password)
   patch('/users/:id', to: 'users#update_password')
 # ----------------------------------------------------
