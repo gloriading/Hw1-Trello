@@ -34,69 +34,30 @@ class UsersController < ApplicationController
 
 #------------for change password -------------------------------------------
 # The user must enter a correct current password and matching new password and new password confirmation. Make sure that the new password is different from the current password
-
-#1- to check if the entered password is its current password
-
+  #
   def edit_password
-    # @user = current_user
+    @user = current_user
   end
 
-  # def update_password
-    # @current_password = params[:current_password]
-    # @password = params[:password]
-    # @password_confirmation = params[:password_confirmation]
-  #
-  #   if !user.authenticate(params[:current_password])
-  #     flash[:alert] = "Please enter your current password."
-  #     render :edit_password
-  #   else
-  #     if params[:password] == params[:password_confirmation]
-  #         if current_user.update password: params[:password]
-  #           flash[:notice] = "Updated."
-  #           redirect_to home_path
-  #         else
-  #           render :edit_password
-  #         end
-  #     else
-  #       render :edit_password
-  #     end
-  #   end
-  #
-  # end
   def update_password
     @user = current_user
 
-    if params[:current_password] == current_userddd.password # not working !!
-      bunding.pry
-        if @user.update(user_params)
+    # if params[:current_password] == current_user.password # not working !!
+
+        if @user.authenticate(params[:current_password]) && @user.update(user_params)
+        # if @user.update(user_params)
+          puts '--------------------------------here!'
+          puts current_user.password
           redirect_to home_path
         else
+          puts '--------------------------------NO?!'
           render :edit_password
         end
-      else
-        flash[:alert] = "What is your current password?"
-        render :edit_password
-    end
+    #   else
+    #     flash[:alert] = "Please verify your current password."
+    #     render :edit_password
+    # end
   end
-
-  # def create
-  #   user = User.find_by(email: session_params[:email])
-  #
-  #   if user && user.authenticate(session_params[:password])
-  #     session[:user_id] = user.id
-  #     flash[:notice] = 'Thank you for sign in!'
-  #     redirect_to home_path
-  #   else
-  #     flash.now[:alert] = 'Wrong email or password!'
-  #     render :new
-  #   end
-  # end
-  #
-
-  # private
-  #   def session_params
-  #     params.require(:session).permit(:email, :password)
-  #   end
 #----------------------------------------------------------------------------
   private
 

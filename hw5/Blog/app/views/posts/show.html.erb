@@ -1,6 +1,6 @@
 <%# show a post  ---------------------------------------------------------%>
 <div class="card text-white bg-dark mb-3 mt-2" style="max-width: 80rem;">
-  <div class="card-header text-right">By: <%= @post.user&.full_name || "[deleted]" %></div>
+  <div class="card-header text-right"><i class="fa fa-user-circle-o"></i> <%= @post.user&.full_name || "[deleted]" %></div>
   <div class="card-body">
     <h4 class="card-title"><%= @post.title %></h4>
     <p class="card-text"><%= @post.body %></p>

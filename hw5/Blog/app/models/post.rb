@@ -13,10 +13,11 @@ class Post < ApplicationRecord
   before_save :squeeze
 
 #---class method, find the most recnet 10 posts-----------------------------
+# can be used in any views!! cool!
   def self.recent_ten
     order("created_at DESC").limit(10)
   end
-
+#---------------------------------------------------------------------------
 
   private
 
