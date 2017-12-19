@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :update, :edit]
   get('/users/:id/edit_password', to: 'users#edit_password',as: :edit_password)
   patch('/users/:id', to: 'users#update_password')
+  
 # ----------------------------------------------------
   resource :session, only: [:new, :create, :destroy]
 #----------------------------------------------------

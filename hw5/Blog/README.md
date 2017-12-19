@@ -17,4 +17,7 @@
     basic bootstrap styling
     icon - font awesome http://fontawesome.io/icons/
     search - make it functional (not yet)
-    
+    add background (not yet)
+    show individual page title for each post
+    add pagination to index page https://github.com/kaminari/kaminari
+    (> rails g kaminari:views bootstrap4)

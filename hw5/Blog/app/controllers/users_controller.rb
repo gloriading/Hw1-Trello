@@ -40,23 +40,38 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    @user = current_user
 
-    # if params[:current_password] == current_user.password # not working !!
+    # @user = current_user
+    @current_password = params[:current_password]
+    @new_password = params[:new_password]
+    @password_confirmation = params[:password_confirmation]
 
-        if @user.authenticate(params[:current_password]) && @user.update(user_params)
-        # if @user.update(user_params)
-          puts '--------------------------------here!'
-          puts current_user.password
+    if current_user.password == @current_password &&
+      @new_password == @password_confirmation
+      puts '---------------------------------complete checking'
+        if @user.update(password: :password)
+          puts '-----------------update completed!'
           redirect_to home_path
         else
-          puts '--------------------------------NO?!'
+          puts '------------------update failed!'
           render :edit_password
         end
+    else
+      render :edit_password
+    end
+
+
+    # # if params[:current_password] == current_user.password # not working !!
+    #   if @user.authenticate(params[:current_password]) && @user.update(user_params)
+    #   # if @user.update(user_params)
+    #     puts '--------------------------------here!'
+    #     puts current_user.password
+    #     redirect_to home_path
     #   else
-    #     flash[:alert] = "Please verify your current password."
+    #     puts '--------------------------------NO?!'
     #     render :edit_password
-    # end
+    #   end
+
   end
 #----------------------------------------------------------------------------
   private
