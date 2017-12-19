@@ -17,18 +17,17 @@ Rails.application.routes.draw do
 #----------------------------------------------------
   get('/', to: 'welcome#index', as: :home)
 #----------------------------------------------------
-  #
-  # resources :users do
-  #   member do
-  #     get :edit_password
-  #     patch :update_password
-  #   end
-  # end
+  resources :users do
+      collection do # use `collection` when add new methods to the existing route
+          get :edit_password
+          patch :update_password
+      end
+  end
 
-  resources :users, only: [:new, :create, :update, :edit]
-  get('/users/:id/edit_password', to: 'users#edit_password',as: :edit_password)
-  patch('/users/:id', to: 'users#update_password')
-  
+  # resources :users, only: [:new, :create, :update, :edit]
+  # get('/users/:id/edit_password', to: 'users#edit_password',as: :edit_password)
+  # patch('/users/:id', to: 'users#update_password')
+
 # ----------------------------------------------------
   resource :session, only: [:new, :create, :destroy]
 #----------------------------------------------------

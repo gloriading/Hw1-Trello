@@ -41,36 +41,44 @@ class UsersController < ApplicationController
 
   def update_password
 
-    # @user = current_user
     @current_password = params[:current_password]
     @new_password = params[:new_password]
     @password_confirmation = params[:password_confirmation]
 
-    if current_user.password == @current_password &&
-      @new_password == @password_confirmation
-      puts '---------------------------------complete checking'
-        if @user.update(password: :password)
-          puts '-----------------update completed!'
-          redirect_to home_path
-        else
-          puts '------------------update failed!'
-          render :edit_password
-        end
+    if current_user.authenticate(@current_password)
+      puts '---------------------------------you entered the correct password'
+
+      if @new_password == @current_password
+        puts '--------------------------please enter a NEW password!'
+        flash[:alert] = "The new password must be different from current password."
+        render :edit_password
+      else
+          if @new_password == @password_confirmation
+            puts '---------------------------------matched!'
+
+                if current_user.update(password: @new_password)
+                  puts '-----------------update completed!'
+                  flash[:notice] = "Update completed, thank you."
+                  redirect_to home_path
+                else
+                  puts '------------------update failed!'
+                  render :edit_password
+                end
+
+          else
+            puts '---------------------------------not matched!'
+            flash[:alert] = "Your new password must match the password confirmation."
+            render :edit_password
+          end
+      end
     else
+      puts '-------------------------------This is not your current password.'
+      # puts 'enter current password: ' + @current_password
+      # puts 'new password: ' + @new_password
+      # puts 'new passwordconfirmation: ' + @password_confirmation
+      flash[:alert] = "Please enter the correct current password."
       render :edit_password
     end
-
-
-    # # if params[:current_password] == current_user.password # not working !!
-    #   if @user.authenticate(params[:current_password]) && @user.update(user_params)
-    #   # if @user.update(user_params)
-    #     puts '--------------------------------here!'
-    #     puts current_user.password
-    #     redirect_to home_path
-    #   else
-    #     puts '--------------------------------NO?!'
-    #     render :edit_password
-    #   end
 
   end
 #----------------------------------------------------------------------------

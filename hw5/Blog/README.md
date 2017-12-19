@@ -11,7 +11,7 @@
     authentication - has access to make new post
     authorization - can edit/delete own posts
     can update its own name/email
-    can update its own password (not yet...)
+    can update its own password 
     forgot password feature (not yet...)
 - style
     basic bootstrap styling
