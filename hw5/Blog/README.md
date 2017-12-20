@@ -11,12 +11,12 @@
     authentication - has access to make new post
     authorization - can edit/delete own posts
     can update its own name/email
-    can update its own password 
+    can update its own password
     forgot password feature (not yet...)
 - style
     basic bootstrap styling
     icon - font awesome http://fontawesome.io/icons/
-    search - make it functional (not yet)
+    search - make it functional (nav search alignment/ show results in another page) <<
     add background (not yet)
     show individual page title for each post
     add pagination to index page https://github.com/kaminari/kaminari

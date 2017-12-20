@@ -1,7 +1,20 @@
 
-
 <h2 class="mt-2">All Posts</h2>
-
+<%= form_tag posts_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+<br>
+<% if @search_results %>
+  <% @search_results.each do |x| %>
+    <p>
+      <%= x.title %>
+    </p>
+  <% end %>
+<% end %>
+<br>
 <p class="text-right"><small>Post Counts: <%= @post_count %> </small></p>
 <% @posts.each do |post| %>
 <ul class="list-group mb-1">

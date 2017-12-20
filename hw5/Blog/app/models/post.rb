@@ -18,6 +18,19 @@ class Post < ApplicationRecord
     order("created_at DESC").limit(10)
   end
 #---------------------------------------------------------------------------
+  def self.search(word)
+    # all of the title that contain `word`
+    title = where 'title ILIKE ?', "%#{word}%"
+    # all of the body that contain `word`
+    body = where 'body ILIKE ?', "%#{word}%"
+
+    # There may be duplicates, so filter duplicates out of descriptions
+    body = body.select do |elem|
+      !title.include? elem
+    end
+    # concat them together, with title going first before body
+    title+body
+  end
 
   private
 

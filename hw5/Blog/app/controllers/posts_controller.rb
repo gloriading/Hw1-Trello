@@ -22,7 +22,10 @@ class PostsController < ApplicationController
     # @posts = Post.all.order(created_at: :desc)
     @post_count = Post.count
     @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
+    @search_results = Post.search(params[:search]) if params[:search].present?
   end
+
+
 #---show a post and its comments---------------------------------------------
   def show
     # for showing individual page title (go to application.html.erb)

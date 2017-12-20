@@ -1,0 +1,7 @@
+<% if @search_results %>
+  <% @search_results.each do |x| %>
+    <p>
+      <%= x.title %>
+    </p>
+  <% end %>
+<% end %>
