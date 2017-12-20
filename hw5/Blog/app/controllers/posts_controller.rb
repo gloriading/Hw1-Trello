@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def index
     # @posts = Post.all.order(created_at: :desc)
     @post_count = Post.count
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(6)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
   end
 #---show a post and its comments---------------------------------------------
   def show
