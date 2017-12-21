@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
 #---search posts by title or body -------------------------------------------
   def search
-    # note: seach box is at navbar, using GET method instead of POST 
+    # note: seach box is at navbar, using GET method instead of POST
     @search_results = Post.search(params[:search]) if params[:search].present?
   end
 
@@ -77,4 +77,6 @@ class PostsController < ApplicationController
       redirect_to home_path
     end
   end
+
+
 end

@@ -8,7 +8,7 @@ class Post < ApplicationRecord
     uniqueness: true
   )
 
-  validates :body, presence: true, length: {minimum: 5, maximum: 500}
+  validates :body, presence: true, length: {minimum: 5, maximum: 1000}
 
   before_save :squeeze
   after_initialize :capitalize

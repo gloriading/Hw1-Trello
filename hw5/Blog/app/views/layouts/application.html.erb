@@ -24,15 +24,15 @@
             <a class="nav-link" href="/posts">All Posts</a>
           </li>
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
+        <%# <form class="form-inline my-2 my-lg-0">
           <input class="form-control-sm mr-sm-2" style="border:none" type="text" placeholder="Search">
 
           <button class="btn btn-secondary btn-sm my-2 my-sm-0 mr-2"  style="border:none" type="submit">Go</button>
-        </form> -->
-        <%= form_tag search_posts_path, method: "get", class: "form-inline my-2 my-lg-0" do %>
+        </form>  %>
+        <%= form_tag search_posts_path, method: "get", class: "mt-2" do %>
           <p>
             <%= text_field_tag :search, params[:search], class: "form-control-sm mr-sm-2", style:"border:none;" %>
-            <%= submit_tag "Find Post", :name => nil, class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2", style: "border:none" %>
+            <%= submit_tag "Find Post", :name => nil, class: "btn btn-secondary btn-sm my-0 my-sm-0 mr-2", style: "border:none" %>
           </p>
         <% end %>
 
@@ -68,7 +68,7 @@
         </ul>
       </div>
     </nav>
-
+<%# flash -------------------------------------------------------------------%>
     <div class="container">
        <% if flash[:notice].present? %>
          <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
@@ -88,7 +88,7 @@
   </div>
 
    <%= yield %>
-
+<%# footer -------------------------------------------------------------------%>
    <div class="footer text-right">
       <p>
         <a href="https://www.facebook.com/" target="blank">

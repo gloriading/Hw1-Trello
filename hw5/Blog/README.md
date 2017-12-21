@@ -16,9 +16,12 @@
 - style
     basic bootstrap styling
     icon - font awesome http://fontawesome.io/icons/
-    search - show results in another page. but need to fix nav search alignment <<
+    search - show results in another page. but need to fix nav search alignment
     add background (HomePage ok)
     show individual page title for each post
+    change posts index page.
+      - display one on top with a dummy picture
+      - six others below in 2 rows
     add pagination to index page https://github.com/kaminari/kaminari
-    (> rails g kaminari:views bootstrap4)
+      (> rails g kaminari:views bootstrap4)
     social media footer. need to add copyright and contact <<
