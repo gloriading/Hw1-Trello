@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
+    collection do
+      get :search
+    end
   end
 #----------------------------------------------------
   get('/', to: 'welcome#index', as: :home)
@@ -35,5 +38,5 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
   end
 #----------------------------------------------------
-
+  resources :password_resets, only: [ :new, :create, :edit, :update]
 end

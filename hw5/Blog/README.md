@@ -12,12 +12,13 @@
     authorization - can edit/delete own posts
     can update its own name/email
     can update its own password
-    forgot password feature (not yet...)
+    forgot password feature (not yet...) <<
 - style
     basic bootstrap styling
     icon - font awesome http://fontawesome.io/icons/
-    search - make it functional (nav search alignment/ show results in another page) <<
-    add background (not yet)
+    search - show results in another page. but need to fix nav search alignment <<
+    add background (HomePage ok)
     show individual page title for each post
     add pagination to index page https://github.com/kaminari/kaminari
     (> rails g kaminari:views bootstrap4)
+    social media footer. need to add copyright and contact <<

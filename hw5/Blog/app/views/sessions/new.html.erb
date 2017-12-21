@@ -1,3 +1,6 @@
+<div class="container">
+
+
 <h3 class="mt-3">Welcome Back, please sign in:</h3>
 
 
@@ -12,5 +15,10 @@
     <%= f.password_field :password, class: "form-control" %>
   </div>
   <%= f.submit 'Sign In', class: "btn btn-outline-danger" %>
-  <small class="text-secondary">Forget password? click here</small>
+  <small>
+    <%= link_to 'Forget password? click here', new_password_reset_path, class: "text-secondary ml-3" %>
+  </small>
 <% end %>
+
+
+</div>

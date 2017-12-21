@@ -29,7 +29,7 @@
 
           <button class="btn btn-secondary btn-sm my-2 my-sm-0 mr-2"  style="border:none" type="submit">Go</button>
         </form> -->
-        <%= form_tag posts_path, method: "get", class: "form-inline my-2 my-lg-0" do %>
+        <%= form_tag search_posts_path, method: "get", class: "form-inline my-2 my-lg-0" do %>
           <p>
             <%= text_field_tag :search, params[:search], class: "form-control-sm mr-sm-2", style:"border:none;" %>
             <%= submit_tag "Find Post", :name => nil, class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2", style: "border:none" %>
@@ -69,52 +69,42 @@
       </div>
     </nav>
 
-    <!-- <nav>
-      <a href="/"> Home </a>
-      |
-      <%= link_to 'New Post', new_post_path %>
-      |
-      <%= link_to 'All Posts', posts_path %>
-      |
-      <% if user_signed_in? %>
-        <span>Hello,
-          <%=link_to current_user.first_name, edit_user_path(current_user)%>!
-        </span>
-        |
-        <%= link_to(
-          'Sign Out',
-          session_path,
-          method: :delete,
-          data: {confirm: 'Do you really want to sign out?'}
-        ) %>
-      <% else %>
-        <%= link_to 'Sign In', new_session_path %>
-        |
-        <%= link_to 'Sign Up', new_user_path %>
-      <% end %>
-
-
-    </nav> -->
-
-    <div class="container mt-2">
+    <div class="container">
        <% if flash[:notice].present? %>
-         <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
            <%= flash[:notice] %>
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
          </div>
        <% elsif flash[:alert].present? %>
-         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
            <%= flash[:alert] %>
            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
              <span aria-hidden="true">&times;</span>
            </button>
          </div>
        <% end %>
+  </div>
 
    <%= yield %>
-   </div>
+
+   <div class="footer text-right">
+      <p>
+        <a href="https://www.facebook.com/" target="blank">
+            <i class="fa fa-facebook-official fa-lg text-dark" aria-hidden="true"></i>
+        </a>
+        <a href="https://twitter.com/" target="blank">
+          <i class="fa fa-twitter-square fa-lg text-dark" aria-hidden="true"></i>
+        </a>
+        <a href="https://github.com" target="blank">
+          <i class="fa fa-github fa-lg text-dark" aria-hidden="true"></i>
+        </a>
+        <a href="https://slack.com/" target="blank">
+          <i class="fa fa-slack fa-lg text-dark" aria-hidden="true"></i>
+        </a>
+      </p>
+    </div>
 
   </body>
 </html>

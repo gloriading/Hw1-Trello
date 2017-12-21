@@ -1,15 +1,22 @@
+<div class="bg-01">
 
-  <div class="jumbotron jumbotron-fluid mt-3" style="background-color: #198c8c;">
-    <div class="container">
+  <div class="jumbotron jumbotron-fluid" style="opacity: 0.6">
+
+    <div class="dropdown ml-5">
+      <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        The 10 most recent posts
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <% Post.recent_ten.each do |post| %>
+        <%= link_to post.title, post_path(post), class: "dropdown-item" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container text-right">
       <h1 class="display-3">Welcome to Life+</h1>
       <p class="lead">This is a place to share your life with others.</p>
     </div>
   </div>
 
-  <h3 class="mt-2"><i class="fa fa-bar-chart"></i> The 10 most recent posts</h3>
-
-  <% Post.recent_ten.each do |post| %>
-  <ul class="list-group mb-1">
-    <%= link_to post.title, post_path(post), class: "list-group-item list-group-item-action list-group-item-info" %>
-  </ul>
-  <% end %>
+</div>

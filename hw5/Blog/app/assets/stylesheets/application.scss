@@ -13,24 +13,35 @@
  *= require_tree .
  *= require_self
  */
-
-html{
-  font-family: Arial;
-}
+ body, html {
+      margin: 0;
+      height: 100%;
+      font-family: Arial;
+  }
 
 *{
   font-family: inherit;
 }
-body {
-  background-color: whitesmoke;
-}
-// .post-list-item {
-//   margin-bottom: 0.5rem;
-// }
-// .post-list-item > a {
-//   text-decoration: none;
-//   color: navy;
-// }
 
+
+.bg-01 {
+  height: 100%;
+  background-image: url("https://images.pexels.com/photos/209500/pexels-photo-209500.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   // background-color: maroon;
+   opacity: 0.8;
+   color: black;
+   text-align: center;
+}
 @import 'bootstrap';
 @import 'font-awesome';

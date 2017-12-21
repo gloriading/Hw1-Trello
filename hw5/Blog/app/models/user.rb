@@ -11,4 +11,11 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def deliver_password_reset_instructions
+    self.perishable_token = SecureRandom.hex(4)
+    save(validate: false)
+
+    PasswordResetNotifierMailer.password_reset_instructions(self).deliver_now
+  end
+
 end

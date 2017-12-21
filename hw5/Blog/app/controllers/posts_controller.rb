@@ -22,9 +22,13 @@ class PostsController < ApplicationController
     # @posts = Post.all.order(created_at: :desc)
     @post_count = Post.count
     @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
-    @search_results = Post.search(params[:search]) if params[:search].present?
   end
 
+#---search posts by title or body -------------------------------------------
+  def search
+    # note: seach box is at navbar, using GET method instead of POST 
+    @search_results = Post.search(params[:search]) if params[:search].present?
+  end
 
 #---show a post and its comments---------------------------------------------
   def show

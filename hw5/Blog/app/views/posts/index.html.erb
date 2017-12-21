@@ -1,27 +1,14 @@
-
-<h2 class="mt-2">All Posts</h2>
-<%= form_tag posts_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-<br>
-<% if @search_results %>
-  <% @search_results.each do |x| %>
-    <p>
-      <%= x.title %>
-    </p>
+<div class="container">
+  <h2 class="mt-2">All Posts</h2>
+  <p class="text-right"><small>Post Counts: <%= @post_count %> </small></p>
+  <% @posts.each do |post| %>
+  <ul class="list-group mb-1">
+    <%= link_to post.title, post_path(post), class: "list-group-item list-group-item-action list-group-item-dark" %>
+  </ul>
   <% end %>
-<% end %>
-<br>
-<p class="text-right"><small>Post Counts: <%= @post_count %> </small></p>
-<% @posts.each do |post| %>
-<ul class="list-group mb-1">
-  <%= link_to post.title, post_path(post), class: "list-group-item list-group-item-action list-group-item-dark" %>
-</ul>
-<% end %>
 
-<div class="mt-2 float-right">
-  <%= paginate @posts%>
+  <div class="mt-2 float-right">
+    <%= paginate @posts%>
+  </div>
+
 </div>

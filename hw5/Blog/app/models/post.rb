@@ -11,6 +11,7 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: {minimum: 5, maximum: 500}
 
   before_save :squeeze
+  after_initialize :capitalize
 
 #---class method, find the most recnet 10 posts-----------------------------
 # can be used in any views!! cool!
@@ -38,6 +39,9 @@ class Post < ApplicationRecord
     self.title.squeeze!(' ')
   end
 
+  def capitalize
+    self.title.try(:capitalize!)
+  end
 
 
 
