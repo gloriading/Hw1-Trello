@@ -7,13 +7,14 @@ class PasswordResetsController < ApplicationController
 
     if user
       user.deliver_password_reset_instructions
-      flash[:notice] = "Instructions to reset your password have been emailed to you"
+      flash[:notice] = "Instructions to reset your password have been emailed to you."
 
       redirect_to home_path
     else
       flash.now[:alert] = "No user was found with email address #{params[:email]}"
       render :new
     end
+
   end
 
 
@@ -33,7 +34,7 @@ class PasswordResetsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
 
   def load_user_using_perishable_token

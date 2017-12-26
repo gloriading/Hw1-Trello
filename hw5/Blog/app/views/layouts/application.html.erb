@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-danger">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color:#5e0231;">
       <a class="navbar-brand" href="/">Life+ </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
         <%= form_tag search_posts_path, method: "get", class: "mt-2" do %>
           <p>
             <%= text_field_tag :search, params[:search], class: "form-control-sm mr-sm-2", style:"border:none;" %>
-            <%= submit_tag "Find Post", :name => nil, class: "btn btn-secondary btn-sm my-0 my-sm-0 mr-2", style: "border:none" %>
+            <%= submit_tag "Find Post", :name => nil, class: "btn btn-sm my-0 my-sm-0 mr-2", style: "border:none; background-color:#dbc3d0;" %>
           </p>
         <% end %>
 

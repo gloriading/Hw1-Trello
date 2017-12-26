@@ -2,7 +2,12 @@
 <%= form_for @post do |form|%>
 
     <% if @post.errors.present? %>
-      <p> <%= @post.errors.full_messages.join(', ') %> </p>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= @post.errors.full_messages.join(', ') %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <% end %>
     <div>
       <%= form.label :title ,for: "title"%>
