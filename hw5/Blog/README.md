@@ -12,7 +12,7 @@
     authorization - can edit/delete own posts
     can update its own name/email
     can update its own password
-    forgot password feature (not yet...) <<
+    forgot password feature << can't send mails yet
 - style
     basic bootstrap styling
     icon - font awesome http://fontawesome.io/icons/
@@ -24,4 +24,7 @@
       - six others below in 2 rows
     add pagination to index page https://github.com/kaminari/kaminari
       (> rails g kaminari:views bootstrap4)
-    social media footer. need to add copyright and contact <<
+
+- to do
+  - homepage fix jumbotron
+  - pagination change color / other styling

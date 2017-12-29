@@ -32,7 +32,7 @@
         <%= form_tag search_posts_path, method: "get", class: "mt-2" do %>
           <p>
             <%= text_field_tag :search, params[:search], class: "form-control-sm mr-sm-2", style:"border:none;" %>
-            <%= submit_tag "Find Post", :name => nil, class: "btn btn-sm my-0 my-sm-0 mr-2", style: "border:none; background-color:#dbc3d0;" %>
+            <%= submit_tag "Find Post", :name => nil, class: "btn btn-sm my-0 my-sm-0 mr-2", style: "border:none; background-color:#dbc3d0" %>
           </p>
         <% end %>
 
@@ -89,7 +89,7 @@
 
    <%= yield %>
 <%# footer -------------------------------------------------------------------%>
-   <div class="footer text-right">
+   <!-- <div class="footer text-right">
       <p>
         <a href="https://www.facebook.com/" target="blank">
             <i class="fa fa-facebook-official fa-lg text-dark" aria-hidden="true"></i>
@@ -104,7 +104,7 @@
           <i class="fa fa-slack fa-lg text-dark" aria-hidden="true"></i>
         </a>
       </p>
-    </div>
+    </div> -->
 
   </body>
 </html>

@@ -1,10 +1,10 @@
 <div class="container">
-  <h3 class="mt-2">All Posts</h3>
+
   <p class="text-right"><small>Post Counts: <%= @post_count %> </small></p>
 
-
+<h5 class="mt-2">Random post:</h5>
   <div class="row">
-    <div class="col-sm-8 card p-0">
+    <div class="col-sm-8 card p-0" style="box-shadow: 2px 3px 10px;">
       <img class="card-img-top" src="https://images.pexels.com/photos/245037/pexels-photo-245037.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" >
       <div class="card-body">
         <h4 class="card-title"><%= @ramdom_post.title %></h4>
@@ -16,21 +16,21 @@
             <%= @ramdom_post.body.split(' ').take(20).join(" ") + " ..." %>
           <% end %>
         </p>
-      </div>
-      <div class="card-footer text-muted text-right p-0">
-        <%= link_to "... More", post_path(@ramdom_post), class:"btn btn-success btn-sm", style:"border:none;" %>
+        <p class="text-right">
+          <%= link_to "... More", post_path(@ramdom_post), class:"btn btn-secondary btn-sm", style:"background-color:#5e0231; border:none;" %>
+        </p>
       </div>
     </div>
 
     <div class="col-sm-4">
       <h4>Most Liked:</h4>
-      <p>...</p>
+      <p>To be built...</p>
     </div>
   </div>
 
   <div class="row mt-3">
   <% @posts.each do |post| %>
-    <div class="col-md-4 card my-1 p-0">
+    <div class="col-md-4 card my-1 p-0 ">
       <img class="card-img-top" src="https://images.pexels.com/photos/46024/pexels-photo-46024.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" >
       <div class="card-body">
         <h4 class="card-title"><%= post.title %></h4>
@@ -42,9 +42,9 @@
             <%= post.body.split(' ').take(20).join(" ") + " ..." %>
           <% end %>
         </p>
-      </div>
-      <div class="card-footer text-muted text-right p-0">
-        <%= link_to "... More", post_path(post), class:"btn btn-success btn-sm", style:"border:none;" %>
+        <p class="text-right">
+          <%= link_to "... More", post_path(post), class:"btn btn-secondary btn-sm", style:"background-color:#5e0231; border:none;" %>
+        </p>
       </div>
     </div>
     <% end %>
@@ -52,7 +52,7 @@
   </div>
 
   <div class="mt-2 float-right">
-    <%= paginate @posts%>
+    <%= paginate @posts %>
   </div>
 
 </div>
