@@ -38,7 +38,10 @@
 .maroon-bg {
   background-color: #5e0231;
 }
-
+.btn.focus, .btn:focus { // remove the hightlight of button
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
 //
 // .footer {
 //    position: fixed;

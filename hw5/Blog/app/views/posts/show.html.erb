@@ -1,36 +1,39 @@
+<div class="container-fluid p-3" style="background-color:#c7a693;">
 <div class="container">
 
-
 <%# show a post  ---------------------------------------------------------%>
-<div class="card text-white mb-3 mt-2"
-      style="background-color:#856046; max-width: 80rem;">
-  <div class="card-header text-right"><i class="fa fa-user-circle-o"></i> <%= @post.user&.full_name || "[deleted]" %></div>
-  <div class="card-body">
-    <h4 class="card-title"><%= @post.title %></h4>
-    <p class="card-text"><%= @post.body %></p>
-    <small class="card-text" style="color:#c7a693;">
-      Created at: <%= time_ago_in_words(@post.created_at) %> ago
-    </small>
-    <small class="card-text ml-3" style="color:#c7a693;">
-      Update at: <%= time_ago_in_words(@post.updated_at) %> ago
-    </small>
-  </div>
+<div class="card text-white mb-3"
+      style="background-color:#856046; max-width: 80rem; box-shadow: 2px 3px 10px black;">
+    <div class="card-header text-right">
+      <i class="fa fa-user-circle-o"></i> <%= @post.user&.full_name || "[deleted]" %>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"><%= @post.title %></h4>
+      <p class="card-text"><%= @post.body %></p>
+      <small class="card-text" style="color:#c7a693;">
+        Created at: <%= time_ago_in_words(@post.created_at) %> ago
+      </small>
+      <small class="card-text ml-3" style="color:#c7a693;">
+        Update at: <%= time_ago_in_words(@post.updated_at) %> ago
+      </small>
+    </div>
 
   <% if can?(:manage, @post) %>
-  <div class="card-body text-right">
-    <div class="btn-group" role="group">
-      <%= button_to "EDIT",
-        edit_post_path(@post),
-        :method => "get",
-        class: "btn btn-outline-light btn-sm" %>
-      <%= button_to "DELETE",
-      post_path(@post),
-      :method => "delete",
-      class: "btn btn-outline-light btn-sm",
-      data: {confirm: 'Are you sure?'} %>
+    <div class="card-body text-right">
+      <div class="btn-group" role="group">
+        <%= button_to "EDIT",
+          edit_post_path(@post),
+          :method => "get",
+          class: "btn btn-outline-light btn-sm" %>
+        <%= button_to "DELETE",
+        post_path(@post),
+        :method => "delete",
+        class: "btn btn-outline-light btn-sm",
+        data: {confirm: 'Are you sure?'} %>
+      </div>
     </div>
-  </div>
   <% end %>
+
 </div>
 
 <%# comments form ---------------------------------------------------------%>
@@ -50,8 +53,7 @@
       placeholder: "What do you think about this post? Write a comment:", style:"border: 1px #856046 solid"%>
   </div>
 
-  <%= f.submit "Submit" ,class: "btn btn-secondary btn-sm mt-2 mb-4",
-      style:"background-color:#c7a693; border:none;"%>
+  <%= f.submit "Submit" ,class: "btn btn-outline-light btn-sm mt-2 mb-4" %>
 <% end %>
 
 <%# Lists of comments ------------------------------------------------------%>
@@ -88,5 +90,7 @@
 </div>
 
 
+</div>
+</div>
 
 </div>
