@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     @post_count = Post.count
     @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
     @ramdom_post = Post.order("RANDOM()").first # randomly pick a record
+    
   end
 
 #---search posts by title or body -------------------------------------------

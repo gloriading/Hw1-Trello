@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   # patch('/posts/:id', to: 'posts#update')
   #
   # delete('/posts/:id', to: 'posts#destroy')
-
-
+  
   resources :posts do
     resources :comments, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
     collection do
       get :search
     end

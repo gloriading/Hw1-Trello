@@ -13,31 +13,33 @@
  *= require_tree .
  *= require_self
  */
- body, html {
-      margin: 0;
-      height: 100%;
-      font-family: Tahoma, Georgia, Arial;
-  }
-
-*{
-  font-family: inherit;
+body, html {
+    margin: 0;
+    height: 100%;
+    font-family: Tahoma, Georgia, Arial;
 }
+
+body{ padding-bottom: 70px; }
+
+*{ font-family: inherit; }
+
+.dropdown-menu, .dropdown-item {background-color:#c7a693 !important;}
+.dropdown-item:hover{ font-weight: bolder; }
 
 .bg-01 {
   height: 100%;
-  background-image: url("https://images.pexels.com/photos/209500/pexels-photo-209500.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  background-image: url("https://images.pexels.com/photos/365637/pexels-photo-365637.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
   background-repeat:no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
 }
 
-.maroon-t {
-  color:#5e0231;
-}
-.maroon-bg {
-  background-color: #5e0231;
-}
+.maroon-t { color:#5e0231; }
+.maroon-bg { background-color: #5e0231; }
+.t-shadow-w { text-shadow: 1px 1px white; }
+.font-01 { font-family: Georgia,sans-serif !important; }
+
 .btn.focus, .btn:focus { // remove the hightlight of button
     -webkit-box-shadow: none!important;
     box-shadow: none!important;

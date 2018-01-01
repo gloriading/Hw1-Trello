@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :users, through: :likes
 
   validates(
     :title,
@@ -12,6 +14,19 @@ class Post < ApplicationRecord
 
   before_save :squeeze
   after_initialize :capitalize
+
+#----------------------------------------------------------------------------
+  def like_for(user)
+    self.likes.find_by_user_id(user)
+  end
+
+  def liked_by?(user)
+    likes.find_by_user_id(user.id).present?
+  end
+
+  def like_count
+    self.likes.count
+  end
 
 #---class method, find the most recnet 10 posts-----------------------------
 # can be used in any views!! cool!

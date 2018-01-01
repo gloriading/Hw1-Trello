@@ -10,6 +10,19 @@
     <div class="card-body">
       <h4 class="card-title"><%= @post.title %></h4>
       <p class="card-text"><%= @post.body %></p>
+      <p>
+        <% if user_signed_in? && @post.liked_by?(current_user) %>
+          <%= link_to "Remove Like",
+              post_like_path(@post, @post.like_for(current_user)),
+              class: "badge badge-dark",
+              method: :delete %>
+        <% else %>
+          <%= link_to "Like", post_likes_path(@post),
+              class: "badge badge-danger",
+              method: :post %>
+        <% end %>
+      </p>
+
       <small class="card-text" style="color:#c7a693;">
         Created at: <%= time_ago_in_words(@post.created_at) %> ago
       </small>
