@@ -4,8 +4,8 @@
 
 <h5 class="mt-2">Featured post:</h5>
   <div class="row">
-    <div class="col-sm-8 card p-0" style="box-shadow: 2px 3px 10px;">
-      <img class="card-img-top mb-0" src="https://images.pexels.com/photos/245037/pexels-photo-245037.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" >
+    <div class="col-sm-8 card p-0" >
+      <img class="card-img-top p-3 mb-0" style="opacity:0.9;" src="https://images.pexels.com/photos/245037/pexels-photo-245037.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" >
       <div class="card-body pt-0">
         <small> <i class="fa fa-heart text-danger"></i>
           <%= @ramdom_post.like_count %> </small>
@@ -26,7 +26,14 @@
 
     <div class="col-sm-4">
       <h5>5 Most Liked:</h5>
-      
+      <% @top_five_posts.each do |p| %>
+        <p><%= p.title %> | <%= p.likes.count %>| <%= p.id %></p>
+      <% end %>
+      <div class="btn-group-vertical">
+        <button type="button" class="btn btn-primary">
+          <%= @top_one_post.title %> <span class="badge badge-light"><%= @top_one_post.likes.count %></span>
+        </button>
+      </div>
     </div>
   </div>
 

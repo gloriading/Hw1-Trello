@@ -23,7 +23,12 @@ class PostsController < ApplicationController
     @post_count = Post.count
     @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
     @ramdom_post = Post.order("RANDOM()").first # randomly pick a record
-    
+    # @top_five_posts = Post.select(:title).where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0..4])
+    @top_five_posts = Post.where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0..4])
+    @top_one_post = Post.where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0]).first
+
+
+
   end
 
 #---search posts by title or body -------------------------------------------
