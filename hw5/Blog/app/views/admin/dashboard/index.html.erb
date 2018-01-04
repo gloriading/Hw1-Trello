@@ -1,0 +1,63 @@
+<div class="container">
+
+
+<h3 class="mt-2 maroon-t">Admin Dashboard</h3>
+
+
+<p>
+  <button class="btn btn-secondary" style="border:none; background-color:#5e0231;" type="button" data-toggle="collapse" data-target="#collapsePost" aria-expanded="false" aria-controls="collapsePost">
+    Post list
+  </button>
+  <button class="btn btn-secondary" style="border:none; background-color:#5e0231;" type="button" data-toggle="collapse" data-target="#collapseUser" aria-expanded="false" aria-controls="collapseUser">
+    User list
+  </button>
+</p>
+
+<div class="collapse" id="collapsePost">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+      </tr>
+    </thead>
+    <tbody>
+
+  <% @posts.each do |post| %>
+      <tr class="table-success">
+        <td><%= post.title %></td>
+        <td><%= post.user.full_name %></td>
+      </tr>
+  <% end %>
+
+    </tbody>
+  </table>
+</div>
+
+
+
+<hr>
+  <div class="collapse" id="collapseUser">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+
+    <% @users.each do |user| %>
+        <tr class="table-success">
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+        </tr>
+    <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
