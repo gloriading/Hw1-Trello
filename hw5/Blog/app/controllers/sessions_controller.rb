@@ -22,9 +22,9 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(session_params[:password])
         #  we want to make this conditional with the checkbox
         if session_params[:remember_me]
-          cookies.permanent[:auth_token] = @user.auth_token
+          cookies.permanent.signed[:auth_token] = @user.auth_token
         else
-          cookies[:auth_token] = @user.auth_token
+          cookies.signed[:auth_token] = @user.auth_token
         end
         redirect_to home_path
         flash[:notice] = 'Thank you for sign in!'
