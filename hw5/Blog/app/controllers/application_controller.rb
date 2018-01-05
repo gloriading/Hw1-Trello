@@ -2,15 +2,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def user_signed_in?
-    if session[:user_id].present? && current_user.nil?
-      session[:user_id] = nil
+      if cookies[:auth_token].present? && current_user.nil?
+      cookies[:auth_token] = nil
+      end
+      cookies[:auth_token].present?
     end
-    session[:user_id].present?
-  end
   helper_method :user_signed_in?
 
+
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    # @current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
   end
   helper_method :current_user
 
@@ -22,6 +24,6 @@ class ApplicationController < ActionController::Base
     end
   end
   # go to posts controller, let non-signed in users can only view posts
-  
+
 
 end

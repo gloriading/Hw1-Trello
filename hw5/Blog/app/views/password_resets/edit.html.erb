@@ -1,12 +1,21 @@
-<div class="container">
-  <h1>Update your password</h1>
+<h1>Reset Password</h1>
 
-  <p>Please enter the new password below and then press "Update Password".</p>
-
-  <%= form_tag password_resets_path, :method => :put do %>
-    <%= password_field_tag :password %>
-    <%= hidden_field_tag :token, @token %>
-
-    <%= submit_tag "Update Password" %>
+<%= form_for @user, :url => password_resets_path(params[:id]) do |f| %>
+  <% if @user.errors.present? %>
+    <p>
+      <%= @user.errors.full_messages.join(', ') %>
+    </p>
   <% end %>
-</div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmatiom %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.submit 'Update Password' %>
+
+<% end %>
