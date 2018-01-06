@@ -1,0 +1,36 @@
+.box{
+  width:50px;
+  height:50px;
+  padding-top: 10px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.container >.row > div {
+  border: 1px black solid;
+  /*display:inline-block;*/
+}
+
+.solution{
+    margin-top: 20px;
+    display: flex;
+}
+
+.line {
+  border-bottom: 1px black solid;
+  border-radius: 0px;
+  align-items: baseline;
+}
+
+.coral {
+  background-color: lightcoral;
+  color: white;
+}
+
+.correct{
+
+}
