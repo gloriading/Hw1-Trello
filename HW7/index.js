@@ -1,9 +1,13 @@
 $(document).ready(function() {
+
 // Setups:
   let counter = 0;
   let results = ['Berlin','Vienna','Seoul','Moscow','Brussels','Budapest']
-  let i = 0
-  let result = results[i];
+  let resultsLength = results.length;
+  let random = Math.floor(Math.random() * resultsLength);
+
+  let result = results[random];
+  console.log(result);
   let resultLength = result.length;
   let resultSplit = result.toLowerCase().split("");
 
@@ -67,6 +71,11 @@ $(document).on("keypress", e => {
                 audio('failure');
                 alert('game over!!!');
                 reset();
+                // setTimeout(function(){
+                //   alert('game over!!!');
+                //   location.reload();
+                // },100)
+
             }else{
                 $('.pic img').attr('src',`images/gallows-${counter}.jpg`);
             }
@@ -76,9 +85,12 @@ $(document).on("keypress", e => {
         if( $('.solution .correct').length == resultLength){
           setTimeout(function(){
             audio('victory');
-            alert('YEAH!!!');
-            reset();
-            // location.reload();
+            // alert('YEAH!!!');
+            // reset();
+            setTimeout(function(){
+              alert('YEAH!!!');
+              location.reload();
+            },100)
           },100);
         }
 
