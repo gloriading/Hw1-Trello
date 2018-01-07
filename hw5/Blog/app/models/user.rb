@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: VALID_EMAIL_REGEX
   validates :first_name, :last_name, presence: true
 
+# ---------------------------------------------------------------------------
   before_create {generate_token(:auth_token)}
 
    def generate_token(column)
@@ -16,6 +17,9 @@ class User < ApplicationRecord
         self[column] = SecureRandom.urlsafe_base64
       end while User.exists?(column => self[column])
    end
+# ---------------------------------------------------------------------------
+# this is used in PasswordResetsController - create action
+# need to add columns to users table to carry new tokens generated
 
    def send_password_reset
       generate_token(:password_reset_token)
@@ -23,16 +27,9 @@ class User < ApplicationRecord
       save!
       UserMailer.password_reset(self).deliver
    end
-
+# ---------------------------------------------------------------------------
   def full_name
     "#{first_name} #{last_name}"
   end
-
-  # def deliver_password_reset_instructions
-  #   self.perishable_token = SecureRandom.hex(4)
-  #   save(validate: false)
-  #
-  #   PasswordResetNotifierMailer.password_reset_instructions(self).deliver_now
-  # end
 
 end

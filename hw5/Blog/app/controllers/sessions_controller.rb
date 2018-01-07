@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-    def new # sign in page # put a link for nav
+    def new
     end
 
     # def create
@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
 
   private
     def session_params
-      params.require(:session).permit(:email, :password)
+      params.require(:session).permit(:email, :password, :remember_me)
     end
 
 

@@ -1,21 +1,25 @@
-<h1>Reset Password</h1>
+<div class="container mt-3">
 
-<%= form_for @user, :url => password_resets_path(params[:id]) do |f| %>
+
+<h4>Reset Password</h4>
+
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
   <% if @user.errors.present? %>
     <p>
       <%= @user.errors.full_messages.join(', ') %>
     </p>
   <% end %>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+  <div class="input-group mb-1">
+    <%= f.label :password, class: "input-group-addon"  %>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
-  <div>
-    <%= f.label :password_confirmatiom %>
-    <%= f.password_field :password_confirmation %>
+  <div class="input-group mb-1">
+    <%= f.label :password_confirmatiom, class: "input-group-addon"  %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
 
-  <%= f.submit 'Update Password' %>
 
+  <%= f.submit "Reset Password", class: "btn btn-outline-secondary btn-sm" %>
 <% end %>
+</div>
