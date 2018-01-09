@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
     def current_user
       # @current_user ||= User.find_by(id: session[:user_id])
-      @current_user ||= User.find_by_auth_token!(cookies.signed[:auth_token]) if cookies.signed[:auth_token]
+      @current_user ||= User.find_by_auth_token!(cookies.signed[:auth_token]) if cookies[:auth_token]
     end
     helper_method :current_user
 
