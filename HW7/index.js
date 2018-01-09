@@ -5,9 +5,10 @@
 // console.log(result);
 // let resultLength = result.length;
 // let resultSplit = result.toLowerCase().split("");
-
+//try:
+// window is a global object
+// window.i = 0;
 $(document).ready(function() {
-
 // Setups:
   let counter = 0;
 
