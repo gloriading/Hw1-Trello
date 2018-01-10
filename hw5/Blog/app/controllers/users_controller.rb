@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      cookies[:auth_token] = @user.auth_token 
+      cookies[:auth_token] = @user.auth_token
       flash[:notice] = "Thank you for signing up, #{@user.first_name}!"
       redirect_to home_path
     else
@@ -43,6 +43,15 @@ class UsersController < ApplicationController
     @current_password = params[:current_password]
     @new_password = params[:new_password]
     @password_confirmation = params[:password_confirmation]
+
+    if (didnt_log_in)
+      return redirect_away
+    end
+
+    if (is_not_real_user)
+      return "you are fake"
+    end
+
 
     if current_user.authenticate(@current_password)
       puts '---------------------------------you entered the correct password'
