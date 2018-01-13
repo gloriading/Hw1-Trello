@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  match "/delayed_job", to: DelayedJobWeb, anchor: false, via: [:get, :post]
+
   # get('/posts/new', to: 'posts#new', as: :new_post)
   # post('/posts/', to: 'posts#create', as: :posts)
   #
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy], shallow: true
     collection do
       get :search
     end

@@ -8,6 +8,8 @@ def create
   @comment.user = current_user # in order to add name next to answers
   #------------------------------------------------------------------------
   if @comment.save
+    # CommentMailer.notify_post_owner(@comment).deliver_now
+    PostReminderJob.set(wait: 1.minute).perform_later
     redirect_to post_path(@post)
   else
     @comments = @post.comments.order(created_at: :desc)
@@ -37,7 +39,7 @@ private
   end
   #
   def authorize_user!
-    unless can?(:manage, @comment)
+    unless can?(:crud, @comment)
       flash[:alert] = "Access Denied!"
       redirect_to home_path
     end

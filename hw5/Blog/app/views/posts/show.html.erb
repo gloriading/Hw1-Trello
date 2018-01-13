@@ -10,17 +10,18 @@
     <div class="card-body">
       <h4 class="card-title"><%= @post.title %></h4>
       <p class="card-text"><%= @post.body %></p>
+
       <p>
-        <% if user_signed_in? && @post.liked_by?(current_user) %>
-          <%= link_to "Remove Like",
-              post_like_path(@post, @post.like_for(current_user)),
-              class: "badge badge-dark",
-              method: :delete %>
-        <% else %>
-          <%= link_to "Like", post_likes_path(@post),
-              class: "badge badge-danger",
-              method: :post %>
+        <% if can?(:like, @post) %>
+          <% if @user_like %>
+            <%= link_to fa_icon("heart 2x"), like_path(@user_like), method: :deletet, class: "text-danger" %>
+          <% else %>
+            <%= link_to fa_icon("heart-o 2x"), post_likes_path(@post), method: :postt, class: "text-danger" %>
+          <% end %>
         <% end %>
+        <span class="badge badge-danger"><%= pluralize(@post.likes.count, 'like') %></span>
+
+
       </p>
 
       <small class="card-text" style="color:#c7a693;">
@@ -31,7 +32,7 @@
       </small>
     </div>
 
-  <% if can?(:manage, @post) %>
+  <% if can?(:crud, @post) %>
     <div class="card-body text-right">
       <div class="btn-group" role="group">
         <%= button_to "EDIT",
