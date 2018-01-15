@@ -14,9 +14,9 @@
       <p>
         <% if can?(:like, @post) %>
           <% if @user_like %>
-            <%= link_to fa_icon("heart 2x"), like_path(@user_like), method: :deletet, class: "text-danger" %>
+            <%= link_to fa_icon("heart 2x"), like_path(@user_like), method: :delete, class: "text-danger" %>
           <% else %>
-            <%= link_to fa_icon("heart-o 2x"), post_likes_path(@post), method: :postt, class: "text-danger" %>
+            <%= link_to fa_icon("heart-o 2x"), post_likes_path(@post), method: :post, class: "text-danger" %>
           <% end %>
         <% end %>
         <span class="badge badge-danger"><%= pluralize(@post.likes.count, 'like') %></span>

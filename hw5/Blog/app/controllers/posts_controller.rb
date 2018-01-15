@@ -19,20 +19,20 @@ class PostsController < ApplicationController
   end
 #---posts index---------------------------------------------------------------
   def index
-    # @posts = Post.all.order(created_at: :desc)
     @post_count = Post.count
-    # @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
     @ramdom_post = Post.order("RANDOM()").first # randomly pick a record
-    # @top_five_posts = Post.select(:title).where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0..4])
-    @top_five_posts = Post.where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0..4])
-    @top_one_post = Post.where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0]).first
+    @top_five = Post.all.sort{|b, a| a.likes.count <=> b.likes.count}[0..4]
 
     @liked = params[:liked]
-        # get this from application.html.erb `{liked: true}`
     if @liked
       @posts = current_user.liked_posts.page(params[:page]).per(6)
     else
+      # with pagination
       @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+      # order by like count
+      # @posts = Post.all.sort{|b, a| a.likes.count <=> b.likes.count}
+
+
     end
 
 
