@@ -23,6 +23,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/posts">All Posts</a>
           </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Liked Posts', posts_path({liked: true}), class:"nav-link"  %>
+            </li>
+          <% end %>
         </ul>
         <%# <form class="form-inline my-2 my-lg-0">
           <input class="form-control-sm mr-sm-2" style="border:none" type="text" placeholder="Search">
@@ -69,7 +74,7 @@
       </div>
     </nav>
 <%# flash -------------------------------------------------------------------%>
-    <div class="container">
+    <div class="container-fluid">
        <% if flash[:notice].present? %>
          <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
            <%= flash[:notice] %>

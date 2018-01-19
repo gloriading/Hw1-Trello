@@ -19,13 +19,21 @@ class PostsController < ApplicationController
   end
 #---posts index---------------------------------------------------------------
   def index
-    # @posts = Post.all.order(created_at: :desc)
     @post_count = Post.count
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # pagination
     @ramdom_post = Post.order("RANDOM()").first # randomly pick a record
-    # @top_five_posts = Post.select(:title).where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0..4])
-    @top_five_posts = Post.where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0..4])
-    @top_one_post = Post.where(:id => Like.group(:post_id).count(:post_id).sort_by{|k, v| v}.reverse.to_h.keys()[0]).first
+    @top_five = Post.all.sort{|b, a| a.likes.count <=> b.likes.count}[0..4]
+
+    @liked = params[:liked]
+    if @liked
+      @posts = current_user.liked_posts.page(params[:page]).per(6)
+    else
+      # with pagination
+      @posts = Post.all.order(created_at: :desc).page(params[:page]).per(6)
+      # order by like count
+      # @posts = Post.all.sort{|b, a| a.likes.count <=> b.likes.count}
+
+
+    end
 
 
 
@@ -44,6 +52,7 @@ class PostsController < ApplicationController
     # display all the comments under a post
     @comments = @post.comments.order(created_at: :desc)
     @comment = Comment.new # display a form for writing comments
+    @user_like = current_user.likes.find_by_post_id(@post) if user_signed_in?
   end
 #---edit a post--------------------------------------------------------------
   def edit
@@ -78,7 +87,7 @@ class PostsController < ApplicationController
   end
 
   def authorize_user!
-    unless can?(:manage, @post)
+    unless can?(:crud, @post)
       # @post here is defined in find_post
       flash[:alert] = 'Access Denied!'
       redirect_to home_path

@@ -1,15 +1,18 @@
-<div class="container">
-
+<div class="bg-basic <%= @liked ? 'bg-02' : 'bg-03' %>">
+<div class="container py-5">
+<h3><%= @liked ? 'Liked Posts' : 'All Posts' %></h3>
   <p class="text-right"><small>Post Counts: <%= @post_count %> </small></p>
+
+<% if !@liked %><%#---------------------------------------------------%>
 
 <h5 class="mt-2">Featured post:</h5>
   <div class="row">
-    <div class="col-sm-8 card p-0" >
+    <div class="col-sm-6 card p-0 border border-dark" >
       <img class="card-img-top p-3 mb-0" style="opacity:0.9;" src="https://images.pexels.com/photos/245037/pexels-photo-245037.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" >
       <div class="card-body pt-0">
-        <small> <i class="fa fa-heart text-danger"></i>
-          <%= @ramdom_post.like_count %> </small>
+
         <h4 class="card-title"><%= @ramdom_post.title %></h4>
+        <span class="badge badge-danger"><%= pluralize(@ramdom_post.likes.count, 'like') %></span>
         <p class="text-right"><small>updated at:<%= time_ago_in_words(@ramdom_post.updated_at) %> ago</small></p>
         <p class="card-text">
           <% if @ramdom_post.body.split(' ').length < 20 %>
@@ -24,26 +27,28 @@
       </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <h5>5 Most Liked:</h5>
-      <% @top_five_posts.each do |p| %>
-        <p><%= p.title %> | <%= p.likes.count %>| <%= p.id %></p>
-      <% end %>
       <div class="btn-group-vertical">
-        <button type="button" class="btn btn-primary">
-          <%= @top_one_post.title %> <span class="badge badge-light"><%= @top_one_post.likes.count %></span>
+        <% @top_five.each do |p| %>
+        <button type="button" class="text-left btn btn-success mb-1">
+          <%= p.title %> <span class="badge badge-light"><%= p.likes.count %></span>
         </button>
+        <% end %>
       </div>
     </div>
   </div>
+
+<% end %><%#---------------------------------------------------%>
 
   <div class="row mt-3">
   <% @posts.each do |post| %>
     <div class="col-md-4 card my-1 p-0 ">
       <img class="card-img-top mb-0" src="https://images.pexels.com/photos/46024/pexels-photo-46024.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" >
       <div class="card-body pt-0">
-        <small> <i class="fa fa-heart text-danger"></i> <%= post.like_count %> </small>
+
         <h4 class="card-title"><%= post.title %></h4>
+        <span class="badge badge-danger"><%= pluralize(post.likes.count, 'like') %></span>
         <p class="text-right"><small>updated at:<%= time_ago_in_words(post.updated_at) %> ago</small></p>
         <p class="card-text">
           <% if post.body.split(' ').length < 20 %>
@@ -65,4 +70,5 @@
     <%= paginate @posts %>
   </div>
 
+</div>
 </div>

@@ -26,13 +26,21 @@ body{ padding-bottom: 70px; }
 .dropdown-menu, .dropdown-item {background-color:#c7a693 !important;}
 .dropdown-item:hover{ font-weight: bolder; }
 
-.bg-01 {
+.bg-basic {
   height: 100%;
-  background-image: url("https://images.pexels.com/photos/365637/pexels-photo-365637.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
   background-repeat:no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+}
+.bg-01 {
+  background-image: url("https://images.pexels.com/photos/365637/pexels-photo-365637.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+}
+.bg-02 {
+  background-image: url("https://images.pexels.com/photos/54283/pexels-photo-54283.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+}
+.bg-03 {
+  background-image: url("https://images.pexels.com/photos/317377/pexels-photo-317377.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
 }
 
 .maroon-t { color:#5e0231; }
