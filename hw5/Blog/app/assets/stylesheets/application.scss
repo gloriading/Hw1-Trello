@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body, html {
+    margin: 0;
+    height: 100%;
+    font-family: Tahoma, Georgia, Arial;
+}
+
+body{ padding-bottom: 70px; }
+
+*{ font-family: inherit; }
+
+.dropdown-menu, .dropdown-item {background-color:#c7a693 !important;}
+.dropdown-item:hover{ font-weight: bolder; }
+
+.bg-01 {
+  height: 100%;
+  background-image: url("https://images.pexels.com/photos/365637/pexels-photo-365637.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.maroon-t { color:#5e0231; }
+.maroon-bg { background-color: #5e0231; }
+.t-shadow-w { text-shadow: 1px 1px white; }
+.font-01 { font-family: Georgia,sans-serif !important; }
+
+.btn.focus, .btn:focus { // remove the hightlight of button
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+//
+// .footer {
+//    position: fixed;
+//    left: 0;
+//    bottom: 0;
+//    width: 100%;
+//    // background-color: maroon;
+//    opacity: 0.8;
+//    color: black;
+//    text-align: center;
+// }
+@import 'bootstrap';
+@import 'font-awesome';
